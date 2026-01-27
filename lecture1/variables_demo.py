@@ -6,8 +6,8 @@ print(type(3.14))  # <class 'float'>
 print(type("hello"))  # <class 'str'>
 print(type(print))  # <class 'builtin_function_or_method'>
 
-# # The id() Function
-# # -------------------------------------------------------------
+# The id() Function
+# -------------------------------------------------------------
 # a = 10
 # b = 10.5
 # c = "hello"
@@ -20,8 +20,8 @@ print(type(print))  # <class 'builtin_function_or_method'>
 # print(id(10))  # Same as id(a)?
 # print(id("hello"))  # Same as id(c)?
 
-# # Dynamic Typing in Python
-# # -------------------------------------------------------------
+# Dynamic Typing in Python
+# -------------------------------------------------------------
 # x = "hello"
 # print(type(x))  # <class 'str'>
 
@@ -29,8 +29,8 @@ print(type(print))  # <class 'builtin_function_or_method'>
 # print(type(x))  # <class 'float'>
 
 
-# # Immutability vs Mutability
-# # -------------------------------------------------------------
+# Immutability vs Mutability
+# -------------------------------------------------------------
 # x = 10
 # print(id(x))  # 9793376
 
@@ -43,8 +43,8 @@ print(type(print))  # <class 'builtin_function_or_method'>
 # my_list.append(4)  # Same object!
 # print(id(my_list))  # 140234567890 (same)
 
-# # Aliasing and Object References
-# # -------------------------------------------------------------
+# Aliasing and Object References
+# -------------------------------------------------------------
 # a = [1, 2, 3]
 # b = a  # b references same list
 
@@ -55,8 +55,8 @@ print(type(print))  # <class 'builtin_function_or_method'>
 # b.append(4)
 # print(a)  # [1, 2, 3, 4] -- both changed!
 
-# # The None Object
-# # -------------------------------------------------------------
+# The None Object
+# -------------------------------------------------------------
 # # Declaring a variable with no value yet
 # result = None
 
@@ -70,6 +70,14 @@ print(type(print))  # <class 'builtin_function_or_method'>
 # print(x)  # None
 # print(type(x))  # <class 'NoneType'>
 
+# a = 10
+# b = 10
+# a = a +1
+# print(id(a))
+# print(id(b))
+
+# b   10
+# a   11
 
 # # is vs == Operator
 # # -------------------------------------------------------------
@@ -82,8 +90,8 @@ print(type(print))  # <class 'builtin_function_or_method'>
 # print(a is b)  # False (different objects)
 # print(a is c)  # True  (same object)
 
-# # The print() Function
-# # -------------------------------------------------------------
+# The print() Function
+# -------------------------------------------------------------
 # # Print literals
 # print("Hello")  # Hello
 # print(3)  # 3
