@@ -9,9 +9,11 @@
 # def add(a, b):
 #     return a + b
 
+
 # # function call
 # result = add(1, 2)
 # print(f"{result=}")  # result=3
+
 
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 4
@@ -21,9 +23,11 @@
 #     perimeter = 2 * (length + width)
 #     return area, perimeter  # Returns a tuple
 
+
 # # Tuple unpacking
 # area, perimeter = rectangle_info(5, 3)
 # print(f"{area=}, {perimeter=}")  # area=15, perimeter=16
+
 
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 5
@@ -31,10 +35,13 @@
 # def greet():
 #     print("Hello!")
 
+
 # greet()  # Hello!
+
 
 # # Redefining the function
 # def greet():
 #     print("Hi there!")
+
 
 # greet()  # Hi there!  (the original version is gone)

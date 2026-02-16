@@ -2,22 +2,25 @@
 # 6. Type Hints
 # ============================================================
 
-# ──────────────────────────────────────────────
-# 📌 Snippet 34
-# ──────────────────────────────────────────────
-def add(a: int, b: int) -> int:
-    return a + b
+# # ──────────────────────────────────────────────
+# # 📌 Snippet 34
+# # ──────────────────────────────────────────────
+# def add(a: int, b: int) -> int:
+#     return a + b
 
-def greet(name: str) -> None:
-    print(f"Hello, {name}!")
 
-# Type hints are NOT enforced at runtime
-result = add("hello", " world")  # Works! Returns "hello world"
+# def greet(name: str) -> None:
+#     print(f"Hello, {name}!")
+
+
+# # Type hints are NOT enforced at runtime
+# result = add("hello", " world")  # Works! Returns "hello world"
 
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 35
 # # ──────────────────────────────────────────────
 # from typing import Optional
+
 
 # def find_index(items: list[str], target: str) -> Optional[int]:
 #     """Return the index of target in items, or None."""
@@ -25,6 +28,7 @@ result = add("hello", " world")  # Works! Returns "hello world"
 #         if item == target:
 #             return i
 #     return None
+
 
 # sensors = ["lidar", "camera", "imu"]
 # result = find_index(sensors, "camera")
@@ -38,24 +42,28 @@ result = add("hello", " world")  # Works! Returns "hello world"
 # # ──────────────────────────────────────────────
 # from typing import Union
 
+
 # def normalize(data: Union[str, list]) -> list[str]:
 #     """Convert input to a list of strings."""
 #     if isinstance(data, str):
 #         return [data]
 #     return [str(item) for item in data]
 
-# print(normalize("hello"))       # ['hello']
-# print(normalize([1, 2, 3]))     # ['1', '2', '3']
+
+# print(normalize("hello"))  # ['hello']
+# print(normalize([1, 2, 3]))  # ['1', '2', '3']
+
 
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 38
 # # ──────────────────────────────────────────────
-# def find_index(items: list[str], target: str) -> int|None:
+# def find_index(items: list[str], target: str) -> int | None:
 #     """Return the index of target in items, or None."""
 #     for i, item in enumerate(items):
 #         if item == target:
 #             return i
 #     return None
+
 
 # sensors = ["lidar", "camera", "imu"]
 # result = find_index(sensors, "camera")
@@ -64,7 +72,8 @@ result = add("hello", " world")  # Works! Returns "hello world"
 # result = find_index(sensors, "radar")
 # print(result)  # None
 
-# ──────────────────────────────────────────────
+# # ──────────────────────────────────────────────
+
 
 # def process(data: str | list) -> str:
 #     """Convert the input data to a single formatted string.
@@ -79,9 +88,11 @@ result = add("hello", " world")  # Works! Returns "hello world"
 #         return data
 #     return ", ".join(str(item) for item in data)
 
-# print(process("hello"))        # hello
-# print(process([1, 2, 3]))     # 1, 2, 3
-# print(process(["a", "b"]))    # a, b
+
+# print(process("hello"))  # hello
+# print(process([1, 2, 3]))  # 1, 2, 3
+# print(process(["a", "b"]))  # a, b
+
 
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 39

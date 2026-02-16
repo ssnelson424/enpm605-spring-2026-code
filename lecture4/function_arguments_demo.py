@@ -2,17 +2,19 @@
 # 3. Function Arguments
 # ============================================================
 
-# ──────────────────────────────────────────────
-# 📌 Snippet 7
-# ──────────────────────────────────────────────
-def display_info(name, age):
-    print(f"{name=}, {age=}")
+# # ──────────────────────────────────────────────
+# # 📌 Snippet 7
+# # ──────────────────────────────────────────────
+# def display_info(name, age):
+#     print(f"{name=}, {age=}")
 
-# Correct usage
-display_info("Alice", 30)  # name='Alice', age=30
 
-# Incorrect usage - values get swapped
-display_info(30, "Alice")  # name=30, age='Alice'
+# # Correct usage
+# display_info("Alice", 30)  # name='Alice', age=30
+
+# # Incorrect usage - values get swapped
+# display_info(30, "Alice")  # name=30, age='Alice'
+
 
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 8
@@ -20,8 +22,10 @@ display_info(30, "Alice")  # name=30, age='Alice'
 # def display_info(name, age=35):
 #     print(f"{name=}, {age=}")
 
-# display_info("Bob")        # name='Bob', age=35
+
+# display_info("Bob")  # name='Bob', age=35
 # display_info("Alice", 30)  # name='Alice', age=30
+
 
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 9
@@ -30,9 +34,11 @@ display_info(30, "Alice")  # name=30, age='Alice'
 # def func(a, b, c=10, d=20):
 #     pass
 
+
 # # SyntaxError: non-default argument follows default argument
 # # def func(a, b=10, c, d=20):
 # #     pass
+
 
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 10
@@ -42,8 +48,10 @@ display_info(30, "Alice")  # name=30, age='Alice'
 #     items.append(item)
 #     return items
 
-# print(add_item_bad("apple"))   # ['apple']
+
+# print(add_item_bad("apple"))  # ['apple']
 # print(add_item_bad("banana"))  # ['apple', 'banana'] -- Surprise!
+
 
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 11
@@ -55,14 +63,17 @@ display_info(30, "Alice")  # name=30, age='Alice'
 #     items.append(item)
 #     return items
 
-# print(add_item_good("apple"))   # ['apple']
+
+# print(add_item_good("apple"))  # ['apple']
 # print(add_item_good("banana"))  # ['banana']
+
 
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 12
 # # ──────────────────────────────────────────────
 # def create_robot(name, robot_type, speed):
 #     print(f"{name}: {robot_type}, max speed={speed} m/s")
+
 
 # # Using keyword arguments (order does not matter)
 # create_robot(speed=0.26, name="TurtleBot3", robot_type="mobile")
@@ -76,16 +87,19 @@ display_info(30, "Alice")  # name=30, age='Alice'
 # # SyntaxError: positional argument follows keyword argument
 # # create_robot(name="TurtleBot3", "mobile", speed=0.26)
 
+
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 14
 # # ──────────────────────────────────────────────
 # def compute_sum(*args):
-#     print(f"args = {args}")   # args is a tuple
+#     print(f"args = {args}")  # args is a tuple
 #     print(f"type = {type(args)}")
 #     return sum(args)
 
-# print(compute_sum(1, 2, 3))       # 6
-# print(compute_sum(10, 20, 30, 40)) # 100
+
+# print(compute_sum(1, 2, 3))  # 6
+# print(compute_sum(10, 20, 30, 40))  # 100
+
 
 # # ──────────────────────────────────────────────
 # # 📌 Snippet 15
@@ -95,54 +109,65 @@ display_info(30, "Alice")  # name=30, age='Alice'
 #     for key, value in kwargs.items():
 #         print(f"  {key}: {value}")
 
+
 # print_robot_config(name="UR5", joints=6, payload=5.0)
 # # name: UR5
 # # joints: 6
 # # payload: 5.0
 
-# # ──────────────────────────────────────────────
-# # 📌 Snippet 16
-# # ──────────────────────────────────────────────
-# def log_message(level, *args, **kwargs):
-#     print(f"[{level}] args={args}, kwargs={kwargs}")
-
-# log_message("INFO", 1, 2, 3, user="Alice", action="login")
-# # [INFO] args=(1, 2, 3), kwargs={'user': 'Alice', 'action': 'login'}
 
 # # ──────────────────────────────────────────────
-# # 📌 Snippet 17
-# # ──────────────────────────────────────────────
-# def example(a, b, *args, option=True, **kwargs):
-#     print(f"{a=}, {b=}, {args=}, {option=}, {kwargs=}")
+# 📌 Snippet 16
+# ──────────────────────────────────────────────
+def log_message(level, *args, **kwargs):
+    print(f"[{level}] args={args}, kwargs={kwargs}")
 
-# example(1, 2, 3, 4, option=False, x=10)
-# # a=1, b=2, args=(3, 4), option=False, kwargs={'x': 10}
 
-# # ──────────────────────────────────────────────
-# # 📌 Snippet 18
-# # ──────────────────────────────────────────────
-# # *args packs positional arguments into a tuple
-# def show_args(*args):
-#     print(f"Packed into tuple: {args}")
+log_message("INFO", 1, 2, 3, user="Alice", action="login")
+# [INFO] args=(1, 2, 3), kwargs={'user': 'Alice', 'action': 'login'}
 
-# show_args(1, 2, 3)  # Packed into tuple: (1, 2, 3)
 
-# # **kwargs packs keyword arguments into a dict
-# def show_kwargs(**kwargs):
-#     print(f"Packed into dict: {kwargs}")
+# ──────────────────────────────────────────────
+# 📌 Snippet 17
+# ──────────────────────────────────────────────
+def example(a, b, *args, option=True, **kwargs):
+    print(f"{a=}, {b=}, {args=}, {option=}, {kwargs=}")
 
-# show_kwargs(x=10, y=20)  # Packed into dict: {'x': 10, 'y': 20}
 
-# # ──────────────────────────────────────────────
-# # 📌 Snippet 19
-# # ──────────────────────────────────────────────
-# def add(a, b, c):
-#     return a + b + c
+example(1, 2, 3, 4, option=False, x=10)
+# a=1, b=2, args=(3, 4), option=False, kwargs={'x': 10}
 
-# # Unpack a list/tuple with *
-# values = [1, 2, 3]
-# print(add(*values))  # print(add(1,2,3)) -> 6
 
-# # Unpack a dictionary with **
-# params = {"a": 10, "b": 20, "c": 30}
-# print(add(**params))  # print(add(a=10, b=20, c=30)) -> 60
+# ──────────────────────────────────────────────
+# 📌 Snippet 18
+# ──────────────────────────────────────────────
+# *args packs positional arguments into a tuple
+def show_args(*args):
+    print(f"Packed into tuple: {args}")
+
+
+show_args(1, 2, 3)  # Packed into tuple: (1, 2, 3)
+
+
+# **kwargs packs keyword arguments into a dict
+def show_kwargs(**kwargs):
+    print(f"Packed into dict: {kwargs}")
+
+
+show_kwargs(x=10, y=20)  # Packed into dict: {'x': 10, 'y': 20}
+
+
+# ──────────────────────────────────────────────
+# 📌 Snippet 19
+# ──────────────────────────────────────────────
+def add(a, b, c):
+    return a + b + c
+
+
+# Unpack a list/tuple with *
+values = [1, 2, 3]
+print(add(*values))  # print(add(1,2,3)) -> 6
+
+# Unpack a dictionary with **
+params = {"a": 10, "b": 20, "c": 30}
+print(add(**params))  # print(add(a=10, b=20, c=30)) -> 60
