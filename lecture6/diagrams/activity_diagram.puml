@@ -17,30 +17,40 @@ task.duration_s * drain_rate;
 
 if (Battery sufficient?) then (yes)
     :Robot navigates to target zone;
-
     :Robot picks up object at source zone;
-
     :Robot delivers object to target zone;
 
-    :task.complete();
-    note right
-        Sets task.status = 'completed'
-        Triggers team.update_score(task.points)
-    end note
-
-    :robot.tasks_completed += 1;
-    :robot.status = 'active';
-
-    :Evaluate battery trigger rules;
-
-    if (battery < 10?) then (yes)
+    if (Battery depleted mid-task?) then (yes)
+        :task.cancel();
+        note right
+            Sets task.status = 'cancelled'
+            Robot returns to 'active' if battery > 0
+        end note
+        :Evaluate battery trigger rules;
         if (battery == 0?) then (yes)
             :status = 'offline';
-        else (no)
+        elseif (battery < 10?) then (yes)
             :status = 'needs_recharge';
+        else (no)
+            :status = 'active';
         endif
     else (no)
-        :status remains 'active';
+        :task.complete();
+        note right
+            Sets task.status = 'completed'
+            Triggers team.update_score(task.points)
+        end note
+
+        :robot.tasks_completed += 1;
+
+        :Evaluate battery trigger rules;
+        if (battery == 0?) then (yes)
+            :status = 'offline';
+        elseif (battery < 10?) then (yes)
+            :status = 'needs_recharge';
+        else (no)
+            :status = 'active';
+        endif
     endif
 
 else (no)
@@ -50,17 +60,41 @@ else (no)
         Sets status = 'active'
     end note
 
-    :Re-check battery against task drain;
+    :Robot navigates to target zone;
+    :Robot picks up object at source zone;
+    :Robot delivers object to target zone;
 
-    if (Battery sufficient after recharge?) then (yes)
-        :Resume task execution
-        (return to navigate step);
-    else (no)
+    if (Battery depleted mid-task?) then (yes)
         :task.cancel();
         note right
             Sets task.status = 'cancelled'
-            Robot returns to 'active'
+            Robot returns to 'active' if battery > 0
         end note
+        :Evaluate battery trigger rules;
+        if (battery == 0?) then (yes)
+            :status = 'offline';
+        elseif (battery < 10?) then (yes)
+            :status = 'needs_recharge';
+        else (no)
+            :status = 'active';
+        endif
+    else (no)
+        :task.complete();
+        note right
+            Sets task.status = 'completed'
+            Triggers team.update_score(task.points)
+        end note
+
+        :robot.tasks_completed += 1;
+
+        :Evaluate battery trigger rules;
+        if (battery == 0?) then (yes)
+            :status = 'offline';
+        elseif (battery < 10?) then (yes)
+            :status = 'needs_recharge';
+        else (no)
+            :status = 'active';
+        endif
     endif
 endif
 
@@ -68,7 +102,8 @@ endif
 note right
     task.status in {'completed', 'cancelled'}
     team.score updated (if completed)
-    robot.status updated per battery rules
+    robot.status set per battery trigger rules
+    robot._current_task cleared
 end note
 
 stop

@@ -27,25 +27,27 @@ alt robot.battery >= estimated drain
     Manager -> Task : assign(robot)
     activate Task
 
-    Task -> Task : check status == 'pending'
+    alt status != 'pending'
+        Task --> Manager : raise RuntimeError
+    else status == 'pending'
+        Task -> Robot : assign_task(task)
+        activate Robot
 
-    Task -> Robot : assign_task(task)
-    activate Robot
+        alt status != 'active'
+            Robot --> Task : raise RuntimeError
+            Task --> Manager : propagate RuntimeError
+        else status == 'active'
+            Robot -> Robot : _current_task = task
+            Robot -> Robot : status = 'busy'
+            Robot --> Task : return
+            deactivate Robot
+        end
 
-    Robot -> Robot : check status == 'active'
-
-    alt status != 'active'
-        Robot --> Task : raise RuntimeError
-        Task --> Manager : propagate RuntimeError
-    else status == 'active'
-        Robot -> Robot : status = 'busy'
-        Robot --> Task : None
-        deactivate Robot
+        Task -> Task : _assigned_robot = robot
+        Task -> Task : status = 'in_progress'
+        Task --> Manager : return
+        deactivate Task
     end
-
-    Task -> Task : status = 'in_progress'
-    Task --> Manager : None
-    deactivate Task
 
 else robot.battery < estimated drain
     Manager -> Manager : skip to next candidate\nor raise RuntimeError
@@ -55,6 +57,8 @@ note over Task, Robot
     **Postconditions:**
     task.status == 'in_progress'
     robot.status == 'busy'
+    robot._current_task == task
+    task._assigned_robot == robot
 end note
 
 @enduml
